@@ -19,10 +19,13 @@ SDL_Renderer* screen::m_renderer = nullptr;
 //     return m_screen;
 // }
 
+int screen::m_width{0};
+int screen::m_hieght{0};
+
 screen::screen(char windowName[], int windowWidth, int windowHieght)
 {
-    width = windowWidth;
-    hieght = windowHieght;
+    m_width = windowWidth;
+    m_hieght = windowHieght;
     m_window = SDL_CreateWindow(windowName,
                                 SDL_WINDOWPOS_UNDEFINED,
                                 SDL_WINDOWPOS_UNDEFINED,
@@ -43,8 +46,8 @@ screen::screen(char windowName[], int windowWidth, int windowHieght)
     buffer = new int[windowWidth*windowHieght];
     blurBuffer = new int[windowWidth*windowHieght];
     
-    memset(buffer, 0, width*hieght*sizeof(int));
-    memset(blurBuffer, 0, width*hieght*sizeof(int));
+    memset(buffer, 0, m_width*m_hieght*sizeof(int));
+    memset(blurBuffer, 0, m_width*m_hieght*sizeof(int));
 }
 
 
@@ -58,8 +61,8 @@ void screen::clear()
     SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 255);
     SDL_RenderClear(m_renderer);
     
-    // memset(buffer, 0, width*hieght*sizeof(int));
-    // memset(blurBuffer, 0, width*hieght*sizeof(int));
+    // memset(buffer, 0, m_width*m_hieght*sizeof(int));
+    // memset(blurBuffer, 0, m_width*m_hieght*sizeof(int));
 }
 
 void screen::boxBlur()
@@ -68,9 +71,9 @@ void screen::boxBlur()
     buffer = blurBuffer;   
     blurBuffer = temp;
 
-    for(int y = 1; y<hieght-1; y++)
+    for(int y = 1; y<m_hieght-1; y++)
     {
-        for(int x = 1; x<width-1; x++)
+        for(int x = 1; x<m_width-1; x++)
         {
             ////get the average color around the pixel 
             /*
@@ -105,7 +108,7 @@ void screen::boxBlur()
 
 void screen::update()
 {   
-    // SDL_UpdateTexture(m_texture, NULL, buffer, width*sizeof(int));
+    // SDL_UpdateTexture(m_texture, NULL, buffer, m_width*sizeof(int));
     // SDL_RenderCopy(m_renderer, m_texture, NULL, NULL);
     SDL_RenderPresent(m_renderer);
 }
@@ -119,6 +122,7 @@ bool screen::eventProcess()
         {
             return false;
         }
+        
     }
     return true;
 }
@@ -135,7 +139,7 @@ void screen::close()
 
 void screen::setPixel(int x, int y, Uint8 R, Uint8 G, Uint8 B)
 {
-    if(x<0 || x>width || y<0 || y>hieght)   
+    if(x<0 || x>m_width || y<0 || y>m_hieght)   
     {
         return;
     }
@@ -144,12 +148,12 @@ void screen::setPixel(int x, int y, Uint8 R, Uint8 G, Uint8 B)
     color = color + G<<16;
     color = color + B<<8;
     color = color + 0xFF;//alpha
-    buffer[width*y+x] = color;
+    buffer[m_width*y+x] = color;
 }
 
 void screen::setPixel(int x, int y,int color)
 {
-    if(x<0 || x>width || y<0 || y>hieght)
+    if(x<0 || x>m_width || y<0 || y>m_hieght)
     {
         return;
     }
@@ -161,22 +165,22 @@ void screen::setPixel(int x, int y,int color)
 
 int screen::getPixel(int x, int y)
 {
-    return buffer[width*y+x];
+    return buffer[m_width*y+x];
 }
 
 unsigned int screen::getPixelBoxBlur(int x, int y)
 {
-    return blurBuffer[width*y+x];   
+    return blurBuffer[m_width*y+x];   
 }
 
 int screen::getWidth()
 {   
-    return width;
+    return m_width;
 }
 
 int screen::getHieght()
 {
-    return hieght;
+    return m_hieght;
 }
 
 

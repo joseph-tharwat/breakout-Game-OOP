@@ -8,8 +8,6 @@
 class screen
 {
     private:
-        int width;
-        int hieght;
         int *buffer;
         int *blurBuffer;
 
@@ -17,6 +15,8 @@ class screen
         SDL_Texture* m_texture;
 
     public: 
+        static int m_width;
+        static int m_hieght;
         static SDL_Renderer* m_renderer;
 
     public:

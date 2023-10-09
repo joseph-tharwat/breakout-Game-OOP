@@ -17,14 +17,47 @@ void ball::moveTo(int x, int y)
     m_y = y;
 }
 
+void ball::moveToUp()
+{
+    m_y = m_y - m_speedY;
+}
+
+void ball::moveToDown()
+{
+    m_y = m_y + m_speedY;
+}
+
+void ball::moveToLeft()
+{
+    m_x = m_x - m_speedX;
+}
+
+void ball::moveToRight()
+{
+    m_x = m_x + m_speedX;
+}
+
+
 void ball::setSpeed(double speed)
 {
-    m_speed = speed;
+    m_speedX = speed;
+    m_speedY = speed;
 }
 
 void ball::update()
 {
+    m_x =  m_x + m_speedX;
+    m_y =  m_y + m_speedY;
+
+    if(m_x >= m_width || m_x <= 0)
+    {
+        m_speedX = -m_speedX;
+    }
     
+    if(m_y >= m_hieght || m_y <= 0)
+    {
+        m_speedY = -m_speedY;
+    }
 }
 
 

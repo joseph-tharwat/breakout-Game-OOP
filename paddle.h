@@ -1,17 +1,20 @@
 
-#ifndef BALL_H
-#define BALL_H
+#ifndef PADDLE_H
+#define PADDLE_H
 
 #include "include\SDL.h"
 
 #include "moveEntity.h"
 
-class ball: public moveEntity
+class paddle: public moveEntity
 {
 private:
-    static const int m_radius{5};
+    int width{60};
+    int height{10};
+    SDL_Texture* m_paddleTexture;
+
 public:
-    ball(int x, int y, double speed = 5);
+    paddle(int x = m_width/2, int y = m_hieght-8, double speed = 10);
     void moveTo(int x, int y);
     void moveToLeft();
     void moveToRight();
@@ -20,7 +23,7 @@ public:
     void setSpeed(double speed);
     void update();
     void draw();
-    ~ball();
+    ~paddle();
 };
 
 

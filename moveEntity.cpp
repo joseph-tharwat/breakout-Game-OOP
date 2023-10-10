@@ -35,6 +35,16 @@ void moveEntity::moveTo(int x, int y)
 
 }
 
+int moveEntity::getX()
+{
+    return 0;
+}
+
+int moveEntity::getY()
+{
+    return 0;
+}
+
 void moveEntity::draw()
 {
 

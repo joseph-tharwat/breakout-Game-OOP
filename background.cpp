@@ -2,9 +2,9 @@
 #include "background.h"
 
 
-background::background(char* path)
+background::background(string path)
 {
-    m_surface = SDL_LoadBMP(path);
+    m_surface = SDL_LoadBMP(path.c_str());
     m_texture = SDL_CreateTextureFromSurface(m_renderer, m_surface);
 }
 

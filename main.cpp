@@ -1,6 +1,6 @@
 
 //To compile without any error
-//g++ main.cpp screen.cpp entity.cpp moveEntity.cpp background.cpp ball.cpp paddle.cpp -lmingw32 -lSDL2main -lSDL2
+//g++ main.cpp screen.cpp entity.cpp moveEntity.cpp background.cpp ball.cpp paddle.cpp interaction.cpp -lmingw32 -lSDL2main -lSDL2
 
 #include<iostream>
 
@@ -12,6 +12,8 @@
 #include "background.h"
 #include "paddle.h"
 
+#include "interaction.h"
+
 using namespace std;
 
 int main(int argc, char* argv[])
@@ -20,7 +22,7 @@ int main(int argc, char* argv[])
 
     screen* mainScreen = new screen(SCREEN_TITLE, SCREEN_WIDTH, SCREEN_HEIGHT);
     
-    background mainBackground("background.bmp");
+    background mainBackground(BACKGROUND_IMAGE_PATH);
 
     ball mainBall(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
     
@@ -28,6 +30,11 @@ int main(int argc, char* argv[])
 
     while(true)
     {   
+        if(isInteracting(mainBall, mainPaddle) == true)
+        {
+            handleCollision(mainBall, mainPaddle);
+        }
+
         mainScreen->clear();
         mainBackground.draw();
         mainBall.update();

@@ -22,11 +22,11 @@ SDL_Renderer* screen::m_renderer = nullptr;
 int screen::m_width{0};
 int screen::m_hieght{0};
 
-screen::screen(char windowName[], int windowWidth, int windowHieght)
+screen::screen(string windowName, int windowWidth, int windowHieght)
 {
     m_width = windowWidth;
     m_hieght = windowHieght;
-    m_window = SDL_CreateWindow(windowName,
+    m_window = SDL_CreateWindow(windowName.c_str(),
                                 SDL_WINDOWPOS_UNDEFINED,
                                 SDL_WINDOWPOS_UNDEFINED,
                                 windowWidth,

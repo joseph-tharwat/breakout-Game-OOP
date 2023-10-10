@@ -5,6 +5,8 @@
 #include<string.h>
 #include<iostream>
 
+using namespace std;
+
 class screen
 {
     private:
@@ -21,7 +23,7 @@ class screen
 
     public:
         screen() = default;
-        screen(char windowName[], int WindowWidth, int WindowHieght);
+        screen(string windowName, int WindowWidth, int WindowHieght);
 
         void show();
         void clear();

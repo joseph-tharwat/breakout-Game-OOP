@@ -19,6 +19,10 @@ public:
     virtual void moveToUp();
     virtual void moveToDown();
     virtual void moveTo(int x, int y);
+
+    virtual int getX();
+    virtual int getY();
+
     virtual void draw();
     ~moveEntity();
 };

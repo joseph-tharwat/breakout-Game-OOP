@@ -34,6 +34,26 @@ void paddle::moveToDown()
     //do nothing
 }
 
+int paddle::getX()
+{
+    return m_x;
+}
+
+int paddle::getY()
+{
+    return m_y;
+}
+
+int paddle::getX2()
+{
+    return m_x + width;
+}
+
+int paddle::getY2()
+{
+    return m_y + height;
+}
+
 void paddle::setSpeed(double speed)
 {
     m_speedX = speed;

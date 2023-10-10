@@ -9,8 +9,8 @@
 class paddle: public moveEntity
 {
 private:
-    int width{60};
-    int height{10};
+    int width{70};
+    int height{15};
     SDL_Texture* m_paddleTexture;
 
 public:
@@ -20,6 +20,12 @@ public:
     void moveToRight();
     void moveToUp();
     void moveToDown();
+
+    int getX();
+    int getY();
+    int getX2();
+    int getY2();
+
     void setSpeed(double speed);
     void update();
     void draw();

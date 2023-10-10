@@ -15,7 +15,7 @@ private:
     SDL_Texture *m_texture{nullptr};
 
 public:
-    background(char* path);
+    background(string path);
     void update();
     void draw();
     SDL_Surface* getsurface();

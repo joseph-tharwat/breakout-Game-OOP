@@ -19,22 +19,32 @@ void ball::moveTo(int x, int y)
 
 void ball::moveToUp()
 {
-    m_y = m_y - m_speedY;
+    m_speedY = -m_speedY;
 }
 
 void ball::moveToDown()
 {
-    m_y = m_y + m_speedY;
+    m_speedY = -m_speedY;
 }
 
 void ball::moveToLeft()
 {
-    m_x = m_x - m_speedX;
+    m_speedX = -m_speedX;
 }
 
 void ball::moveToRight()
 {
-    m_x = m_x + m_speedX;
+    m_speedX = -m_speedX;
+}
+
+int ball::getX()
+{
+    return m_x;
+}
+
+int ball::getY()
+{
+    return m_y;
 }
 
 
@@ -54,10 +64,15 @@ void ball::update()
         m_speedX = -m_speedX;
     }
     
-    if(m_y >= m_hieght || m_y <= 0)
+    if(m_y <= 0)
     {
         m_speedY = -m_speedY;
     }
+
+    // if(m_y >= m_hieght || m_y <= 0)
+    // {
+    //     m_speedY = -m_speedY;
+    // }
 }
 
 

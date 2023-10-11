@@ -106,7 +106,7 @@ void screen::boxBlur()
     }
 }
 
-void screen::update()
+void screen::draw()
 {   
     // SDL_UpdateTexture(m_texture, NULL, buffer, m_width*sizeof(int));
     // SDL_RenderCopy(m_renderer, m_texture, NULL, NULL);

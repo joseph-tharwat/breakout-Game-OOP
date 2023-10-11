@@ -11,8 +11,11 @@
 #include "ball.h"
 #include "background.h"
 #include "paddle.h"
+#include "brickGrid.h"
 
 #include "interaction.h"
+
+#include <array>
 
 using namespace std;
 
@@ -28,6 +31,17 @@ int main(int argc, char* argv[])
     
     paddle mainPaddle(SCREEN_WIDTH/2);
 
+    brickGrid mainBrickGrid = brickGrid();
+    // cout<<"created"<<endl;
+    // brick b1(50,50);
+    // brick b2(50,100);
+    // brick b3(50,150);
+    // brick b4(50,200);
+    // brick vb[4] = {b1,b2,b3,b4};
+    // vb.push_back(b1);
+    // vb.push_back(b2);
+    // vb.push_back(b3);
+    // vb.push_back(b4);
     while(true)
     {   
         if(isInteracting(mainBall, mainPaddle) == true)
@@ -38,9 +52,13 @@ int main(int argc, char* argv[])
         mainScreen->clear();
         mainBackground.draw();
         mainBall.update();
-        mainBall.draw();
+        mainBrickGrid.update();
+
         mainPaddle.draw();
-        mainScreen->update();
+        mainBrickGrid.draw();
+        mainBall.draw();
+
+        mainScreen->draw();
 
         SDL_Event event;
         while(SDL_PollEvent(&event))

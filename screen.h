@@ -28,7 +28,7 @@ class screen
         void show();
         void clear();
         void boxBlur();
-        void update();
+        void draw();
         void close();
         bool eventProcess();
 

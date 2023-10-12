@@ -32,22 +32,15 @@ int main(int argc, char* argv[])
     paddle mainPaddle(SCREEN_WIDTH/2);
 
     brickGrid mainBrickGrid = brickGrid();
-    // cout<<"created"<<endl;
-    // brick b1(50,50);
-    // brick b2(50,100);
-    // brick b3(50,150);
-    // brick b4(50,200);
-    // brick vb[4] = {b1,b2,b3,b4};
-    // vb.push_back(b1);
-    // vb.push_back(b2);
-    // vb.push_back(b3);
-    // vb.push_back(b4);
+    
     while(true)
     {   
         if(isInteracting(mainBall, mainPaddle) == true)
         {
             handleCollision(mainBall, mainPaddle);
         }
+
+        isInteracting_handle(mainBall, mainBrickGrid);
 
         mainScreen->clear();
         mainBackground.draw();

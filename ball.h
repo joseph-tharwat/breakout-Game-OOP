@@ -22,6 +22,7 @@ public:
     int getY();
 
     void setSpeed(double speed);
+    int getSpeed();
     void update();
     void draw();
     ~ball();

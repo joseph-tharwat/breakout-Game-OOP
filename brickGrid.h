@@ -16,7 +16,11 @@ private:
     int m_colomns{10};
     int m_widthOffset{20};
     int m_heightOffset{20};
-    brick* m_bricks[40];
+    int m_spaceBetweenBricks{3};
+
+public:
+    vector<brick*> m_bricks;
+    
 public:
     brickGrid();
 

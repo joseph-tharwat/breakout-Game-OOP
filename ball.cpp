@@ -19,22 +19,22 @@ void ball::moveTo(int x, int y)
 
 void ball::moveToUp()
 {
-    m_speedY = -m_speedY;
+    m_speedY = -abs(m_speedY);
 }
 
 void ball::moveToDown()
 {
-    m_speedY = -m_speedY;
+    m_speedY = abs(m_speedY);
 }
 
 void ball::moveToLeft()
 {
-    m_speedX = -m_speedX;
+    m_speedX = -abs(m_speedX);
 }
 
 void ball::moveToRight()
 {
-    m_speedX = -m_speedX;
+    m_speedX = abs(m_speedX);
 }
 
 int ball::getX()
@@ -52,6 +52,12 @@ void ball::setSpeed(double speed)
 {
     m_speedX = speed;
     m_speedY = speed;
+}
+
+int ball::getSpeed()
+{
+    int max = m_speedX > m_speedY ? m_speedX : m_speedY;
+    return max + m_radius;
 }
 
 void ball::update()

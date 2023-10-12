@@ -45,6 +45,16 @@ int moveEntity::getY()
     return 0;
 }
 
+void moveEntity::setSpeed(double speed)
+{
+
+}
+
+int moveEntity::getSpeed()
+{
+    return 0;
+}
+
 void moveEntity::draw()
 {
 

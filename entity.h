@@ -10,7 +10,11 @@ class entity: public screen
 public:
     
 public:
-    entity();
+    entity(); 
+
+    virtual int getX();
+    virtual int getY();
+
     virtual void update();
     virtual void draw();
 

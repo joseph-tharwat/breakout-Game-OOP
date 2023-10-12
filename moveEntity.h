@@ -23,6 +23,9 @@ public:
     virtual int getX();
     virtual int getY();
 
+    virtual void setSpeed(double speed);
+    virtual int getSpeed();
+
     virtual void draw();
     ~moveEntity();
 };

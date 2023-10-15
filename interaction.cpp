@@ -38,10 +38,12 @@ void isInteracting_handle(ball& localBall, brickGrid& grid)
         if( localBall.getX() >= localBrick->getX() && localBall.getX() <= localBrick->getX2() 
             &&
             (localBall.getY() >= localBrick->getY()  && localBall.getY() <= localBrick->getY2())
-          )
+            && 
+            (localBrick->isDestroyed == false)
+        )
         {
            handleCollision(localBall, *localBrick); 
-           grid.m_bricks.erase(grid.m_bricks.begin() + index);
+        //    grid.m_bricks.erase(grid.m_bricks.begin() + index);
            return;
         }
         index++;

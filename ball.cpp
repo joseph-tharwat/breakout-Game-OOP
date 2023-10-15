@@ -74,11 +74,6 @@ void ball::update()
     {
         m_speedY = -m_speedY;
     }
-
-    // if(m_y >= m_hieght || m_y <= 0)
-    // {
-    //     m_speedY = -m_speedY;
-    // }
 }
 
 

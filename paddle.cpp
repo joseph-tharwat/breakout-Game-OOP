@@ -11,7 +11,8 @@ paddle::paddle(int x, int y, double speed): moveEntity(x,y,speed)
 void paddle::moveTo(int x, int y)
 {
     m_x = x;
-    m_y = y;
+    // m_y = y;
+    
 }
 
 void paddle::moveToLeft()

@@ -10,8 +10,9 @@ build:
 	g++ -c interaction.cpp		-o outputFiles\interaction.o
 	g++ -c brick.cpp			-o outputFiles\brick.o
 	g++ -c brickGrid.cpp		-o outputFiles\brickGrid.o
-	
+	g++ -c game.cpp				-o outputFiles\game.o
+
 	@echo "linking"
-	g++ outputFiles\\*.o -lmingw32 -lSDL2main -lSDL2	-o a.exe
+	g++ outputFiles\\\*.o -lmingw32 -lSDL2main -lSDL2	-o a.exe
 
 	a.exe

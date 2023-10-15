@@ -32,6 +32,25 @@ void brickGrid::draw()
     }
 }
 
+void brickGrid::reset()
+{
+    for(auto br : m_bricks)
+    {
+        br->isDestroyed = false;
+    }
+}
+
+bool brickGrid::isDistroedAll()
+{
+    for(auto br : m_bricks)
+    {
+        if(br->isDestroyed == false)
+        {
+            return false;
+        }
+    }
+}
+
 brickGrid::~brickGrid()
 {
 }

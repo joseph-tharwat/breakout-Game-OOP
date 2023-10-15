@@ -26,7 +26,8 @@ public:
 
     void update();
     void draw();
-
+    void reset();
+    bool isDistroedAll();
     ~brickGrid();
 };
 

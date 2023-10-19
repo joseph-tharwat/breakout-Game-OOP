@@ -40,6 +40,13 @@ void game::run()
         
         m_screen->draw();
 
+
+        if(m_brickGrid.isDistroedAll() == true)
+        {
+            cout<<"You win"<<endl;
+            break;
+        }
+
         while(SDL_PollEvent(&event))
         {
             switch (event.type)
@@ -48,7 +55,7 @@ void game::run()
                 m_screen->close();
                 return;
                 break;
-            
+
             case SDL_KEYDOWN:
                 switch(event.key.keysym.sym)
                 {

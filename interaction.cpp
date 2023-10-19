@@ -43,7 +43,6 @@ void isInteracting_handle(ball& localBall, brickGrid& grid)
         )
         {
            handleCollision(localBall, *localBrick); 
-        //    grid.m_bricks.erase(grid.m_bricks.begin() + index);
            return;
         }
         index++;
@@ -52,9 +51,13 @@ void isInteracting_handle(ball& localBall, brickGrid& grid)
 
 void handleCollision(ball& localBall, brick& localBrick)
 {
-    localBrick.isDestroyed = true;
+    localBrick.weaken();
+    if(localBrick.isVeryWeak() == true)
+    {
+        localBrick.isDestroyed = true;
+    }
 
-    //+10 or -10 because the ball moves a specific number of pexil each time so we need to check range not just when ballX == brickX or ballY == brickY
+    //+getSpeed() or -getSpeed() because the ball moves a specific number of pexil each time so we need to check range not just when ballX == brickX or ballY == brickY
     
     //from the top
     if(localBall.getX() >= localBrick.getX() && localBall.getX() <= localBrick.getX2()

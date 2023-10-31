@@ -17,7 +17,7 @@ private:
 public:
     background(string path);
     void update();
-    void draw();
+
     SDL_Surface* getsurface();
     SDL_Texture* getTexture();
     ~background();

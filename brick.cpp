@@ -56,27 +56,6 @@ void brick::update()
     
 }
 
-void brick::draw()
-{
-    if(m_strength == 3)
-    {
-        SDL_SetRenderDrawColor(m_renderer, 0, 0, VERY_STRONG_BRICK_COLOR, 255);
-    }
-    else if(m_strength == 2)
-    {
-        SDL_SetRenderDrawColor(m_renderer, 0, 0, STRONG_BRICK_COLOR, 255);
-    }
-    else if(m_strength == 1)
-    {
-        SDL_SetRenderDrawColor(m_renderer, 0, 0, WEAK_BRICK_COLOR, 255);
-    }
-    
-
-    SDL_Rect rect{m_x, m_y, m_brickWidth, m_brickHeight};
-    SDL_RenderFillRect(m_renderer, &rect);
-    // SDL_RenderPresent(m_renderer); 
-}
-
 brick::~brick()
 {
 }

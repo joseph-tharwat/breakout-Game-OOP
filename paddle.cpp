@@ -62,23 +62,12 @@ void paddle::setSpeed(double speed)
 
 void paddle::update()
 {
-    if(m_x >= m_width || m_x <= 0)
+    if(m_x >= SCREEN_WIDTH || m_x <= 0)
     {
         m_speedX = -m_speedX;
         m_x =  m_x + m_speedX;
     }
 }
-
-
-void paddle::draw()
-{   
-    SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
-
-    SDL_Rect rect{m_x, m_y, width, height};
-    SDL_RenderFillRect(m_renderer, &rect);
-    // SDL_RenderPresent(m_renderer); 
-}
-
 
 paddle::~paddle()
 {

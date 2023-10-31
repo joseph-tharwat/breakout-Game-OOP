@@ -26,7 +26,6 @@ public:
     virtual void setSpeed(double speed);
     virtual int getSpeed();
 
-    virtual void draw();
     ~moveEntity();
 };
 

@@ -47,6 +47,11 @@ int ball::getY()
     return m_y;
 }
 
+int ball::getRadius()
+{
+    return m_radius;
+}
+
 
 void ball::setSpeed(double speed)
 {
@@ -65,7 +70,7 @@ void ball::update()
     m_x =  m_x + m_speedX;
     m_y =  m_y + m_speedY;
 
-    if(m_x >= m_width || m_x <= 0)
+    if(m_x >= SCREEN_WIDTH || m_x <= 0)
     {
         m_speedX = -m_speedX;
     }
@@ -75,52 +80,6 @@ void ball::update()
         m_speedY = -m_speedY;
     }
 }
-
-
-void ball::draw()
-{   
-    SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
-
-    int x = m_x;
-    int y = m_y;
-    int offsetx, offsety, d;
-
-    offsetx = 0;
-    offsety = m_radius;
-    d = m_radius -1;
-
-    while (offsety >= offsetx)
-    {
-        SDL_RenderDrawLine(m_renderer, x - offsety, y + offsetx,
-                                     x + offsety, y + offsetx);
-        SDL_RenderDrawLine(m_renderer, x - offsetx, y + offsety,
-                                     x + offsetx, y + offsety);
-        SDL_RenderDrawLine(m_renderer, x - offsetx, y - offsety,
-                                     x + offsetx, y - offsety);
-        SDL_RenderDrawLine(m_renderer, x - offsety, y - offsetx,
-                                     x + offsety, y - offsetx);
-
-
-        if (d >= 2*offsetx)
-        {
-            d -= 2*offsetx + 1;
-            offsetx +=1;
-        }
-        else if (d < 2 * (m_radius - offsety))
-        {
-            d += 2 * offsety - 1;
-            offsety -= 1;
-        }
-        else
-        {
-            d += 2 * (offsety - offsetx - 1);
-            offsety -= 1;
-            offsetx += 1;
-        }
-    }
-    // SDL_RenderPresent(m_renderer); 
-}
-
 
 ball::~ball()
 {

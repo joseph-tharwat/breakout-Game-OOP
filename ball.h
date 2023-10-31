@@ -4,6 +4,8 @@
 
 #include "include\SDL.h"
 
+#include "main.h"
+
 #include "moveEntity.h"
 
 class ball: public moveEntity
@@ -20,11 +22,11 @@ public:
 
     int getX();
     int getY();
+    int getRadius();
 
     void setSpeed(double speed);
     int getSpeed();
     void update();
-    void draw();
     ~ball();
 };
 

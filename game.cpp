@@ -4,7 +4,7 @@
 game::game(): m_screen(new screen(SCREEN_TITLE, SCREEN_WIDTH, SCREEN_HEIGHT)), 
             m_background(background(BACKGROUND_IMAGE_PATH)),
             m_ball(ball(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)),
-            m_paddle(paddle(SCREEN_WIDTH/2)),
+            m_paddle(paddle(SCREEN_WIDTH/2,SCREEN_HEIGHT-8)),
             m_brickGrid(brickGrid())
 {
     
@@ -17,14 +17,8 @@ void game::run()
     {
         checkStatus();
 
-        m_screen->clear();
+        m_screen->draw(m_background, m_brickGrid, m_ball, m_paddle);
 
-        m_background.draw();
-        
-        m_brickGrid.draw();
-        m_ball.draw();
-        m_paddle.draw();
-        
         if(m_status == PLAYING)
         {
             if(isInteracting(m_ball, m_paddle) == true)
@@ -37,9 +31,7 @@ void game::run()
             m_ball.update();
             m_brickGrid.update();
         }
-        
-        m_screen->draw();
-
+    
 
         if(m_brickGrid.isDistroedAll() == true)
         {

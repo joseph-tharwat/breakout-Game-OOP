@@ -22,11 +22,6 @@ void entity::update()
 
 }
 
-void entity::draw()
-{
-    
-}
-
 entity::~entity()
 {
 }

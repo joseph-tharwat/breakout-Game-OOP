@@ -3,9 +3,8 @@
 #define ENTITY_H
 
 #include "include\SDL.h"
-#include "screen.h"
 
-class entity: public screen
+class entity
 {
 public:
     
@@ -16,7 +15,6 @@ public:
     virtual int getY();
 
     virtual void update();
-    virtual void draw();
 
     ~entity();
 };

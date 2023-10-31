@@ -39,15 +39,115 @@ void screen::clear()
 {
     SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 255);
     SDL_RenderClear(m_renderer);
-    
-    // memset(buffer, 0, m_width*m_hieght*sizeof(int));
-    // memset(blurBuffer, 0, m_width*m_hieght*sizeof(int));
 }
 
 void screen::draw()
-{   
-    // SDL_UpdateTexture(m_texture, NULL, buffer, m_width*sizeof(int));
+{  
     SDL_RenderPresent(m_renderer);
+}
+
+void screen::draw(ball b)
+{
+    SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
+
+    int x = b.getX();
+    int y = b.getY();
+    int radius = b.getRadius(); 
+
+    int offsetx, offsety, d;
+
+    offsetx = 0;
+    offsety = radius;
+    d = radius -1;
+
+    while (offsety >= offsetx)
+    {
+        SDL_RenderDrawLine(m_renderer, x - offsety, y + offsetx,
+                                     x + offsety, y + offsetx);
+        SDL_RenderDrawLine(m_renderer, x - offsetx, y + offsety,
+                                     x + offsetx, y + offsety);
+        SDL_RenderDrawLine(m_renderer, x - offsetx, y - offsety,
+                                     x + offsetx, y - offsety);
+        SDL_RenderDrawLine(m_renderer, x - offsety, y - offsetx,
+                                     x + offsety, y - offsetx);
+
+
+        if (d >= 2*offsetx)
+        {
+            d -= 2*offsetx + 1;
+            offsetx +=1;
+        }
+        else if (d < 2 * (radius - offsety))
+        {
+            d += 2 * offsety - 1;
+            offsety -= 1;
+        }
+        else
+        {
+            d += 2 * (offsety - offsetx - 1);
+            offsety -= 1;
+            offsetx += 1;
+        }
+    }   
+}
+
+void screen::draw(paddle p)
+{
+    SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
+
+    SDL_Rect rect{p.getX(), p.getY(), p.getX2()-p.getX(), p.getY2()-p.getY()};
+    SDL_RenderFillRect(m_renderer, &rect);
+}
+
+void screen::draw(brick b)
+{
+    if(b.getStrength() == 3)
+    {
+        SDL_SetRenderDrawColor(m_renderer, 0, 0, VERY_STRONG_BRICK_COLOR, 255);
+    }
+    else if(b.getStrength() == 2)
+    {
+        SDL_SetRenderDrawColor(m_renderer, 0, 0, STRONG_BRICK_COLOR, 255);
+    }
+    else if(b.getStrength() == 1)
+    {
+        SDL_SetRenderDrawColor(m_renderer, 0, 0, WEAK_BRICK_COLOR, 255);
+    }
+
+    SDL_Rect rect{b.getX(), b.getY(), b.getX2()-b.getX(), b.getY2()-b.getY()};
+    SDL_RenderFillRect(m_renderer, &rect);   
+}
+
+void screen::draw(brickGrid bg)
+{
+    for(int i=0; i<bg.getRows() * bg.getCols(); i++)
+    {
+        if(bg.m_bricks[i]->isDestroyed == false)
+            draw(*bg.m_bricks[i]);
+    }
+}
+
+void screen::draw(background b)
+{
+    SDL_RenderCopy(
+        m_renderer,
+        SDL_CreateTextureFromSurface(m_renderer, b.getsurface()),
+        NULL, NULL
+    );
+}
+
+void screen::draw(background back, brickGrid bg, ball b, paddle p)
+{
+    clear();
+    
+    //draw every entity
+    draw(back); 
+    draw(bg);
+    draw(b);
+    draw(p);
+
+    //perform the drawing
+    draw();   
 }
 
 bool screen::eventProcess()
@@ -63,6 +163,7 @@ bool screen::eventProcess()
     }
     return true;
 }
+
 
 void screen::close()
 {

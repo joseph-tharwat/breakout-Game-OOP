@@ -1,6 +1,7 @@
 
 #include "brickGrid.h"
 #include <cstdlib>
+#include <time.h>
 
 brickGrid::brickGrid()
 {
@@ -22,18 +23,19 @@ brickGrid::brickGrid()
     }
 }
 
+int brickGrid::getRows()
+{
+    return m_rows;
+}
+
+int brickGrid::getCols()
+{
+    return m_colomns;
+}
+
 void brickGrid::update()
 {
     
-}
-
-void brickGrid::draw()
-{
-    for(int i=0; i<m_rows*m_colomns; i++)
-    {
-        if(m_bricks[i]->isDestroyed == false)
-            m_bricks[i]->draw();
-    }
 }
 
 void brickGrid::reset()

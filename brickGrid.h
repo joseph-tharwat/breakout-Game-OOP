@@ -24,8 +24,10 @@ public:
 public:
     brickGrid();
 
+    int getRows();
+    int getCols();
+
     void update();
-    void draw();
     void reset();
     bool isDistroedAll();
     ~brickGrid();

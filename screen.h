@@ -4,7 +4,11 @@
 #include "include\SDL.h"
 #include<string.h>
 #include<iostream>
-
+#include "ball.h"
+#include "paddle.h"
+#include "brick.h"
+#include "brickGrid.h"
+#include "background.h"
 using namespace std;
 
 class screen
@@ -25,6 +29,13 @@ class screen
 
         void clear();
         void draw();
+        void draw(ball b);
+        void draw(paddle p);
+        void draw(brick b);
+        void draw(brickGrid bg);
+        void draw(background b);
+        void draw(background back, brickGrid bg, ball b, paddle p);
+
         void close();
     
         bool eventProcess();

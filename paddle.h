@@ -6,6 +6,8 @@
 
 #include "moveEntity.h"
 
+#include "main.h"
+
 class paddle: public moveEntity
 {
 private:
@@ -14,7 +16,7 @@ private:
     SDL_Texture* m_paddleTexture;
 
 public:
-    paddle(int x = m_width/2, int y = m_hieght-8, double speed = 10);
+    paddle(int x, int y, double speed = 10);
     void moveTo(int x, int y);
     void moveToLeft();
     void moveToRight();
@@ -28,7 +30,6 @@ public:
 
     void setSpeed(double speed);
     void update();
-    void draw();
     ~paddle();
 };
 

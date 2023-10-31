@@ -55,11 +55,6 @@ int moveEntity::getSpeed()
     return 0;
 }
 
-void moveEntity::draw()
-{
-
-}
-
 moveEntity::~moveEntity()
 {
 }

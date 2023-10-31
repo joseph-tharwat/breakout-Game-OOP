@@ -31,7 +31,6 @@ public:
     int getX2();
     int getY2();
     void update();
-    void draw();
     bool isVeryWeak();
     void weaken();
     int getStrength();

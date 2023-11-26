@@ -1,0 +1,32 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C++ build breakout game",
+			"command": "D:\\Programs Sources\\minGw_18\\MinGW\\bin\\g++.exe",
+			"args": [
+				"-fdiagnostics-color=always",
+				//"-g",
+				"-std=c++17",
+				"${workspaceFolder}\\*.cpp",
+				"-L",
+				"${workspaceFolder}\\",//linking with SDL lib
+				"-lmingw32",
+				"-lSDL2main",
+				"-lSDL2",
+				"-o",
+				"${workspaceFolder}\\outputFiles\\breakout.exe"
+				
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build",
+			"detail": "compiler: \"D:\\Programs Sources\\minGw_18\\MinGW\\bin\\g++.exe\""
+		}
+	]
+}

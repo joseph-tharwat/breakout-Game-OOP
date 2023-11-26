@@ -6,6 +6,8 @@
 
 #include<iostream>
 
+#include <future>
+
 #include "include\SDL.h"
 
 #include"main.h"
@@ -18,6 +20,8 @@
 
 #include "interaction.h"
 
+using namespace std;
+
 enum status
 {
     LOSE,
@@ -29,6 +33,8 @@ enum status
 class game
 {
 private:
+
+public:
     screen* m_screen;
     background m_background;
     ball m_ball;

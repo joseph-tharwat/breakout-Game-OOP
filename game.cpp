@@ -16,14 +16,18 @@ void game::run()
     while(true)
     {
         checkStatus();
-
-        m_screen->draw(m_background, m_brickGrid, m_ball, m_paddle);
+        
+        // m_screen->draw(m_background, m_brickGrid, m_ball, m_paddle);
+        auto drawResult = async(launch::async, [this](background back, brickGrid bg, ball b, paddle p){
+            m_screen->draw(back, bg, b, p);
+        }, m_background, m_brickGrid, m_ball, m_paddle);
+        
 
         if(m_status == PLAYING)
         {
-            if(isInteracting(m_ball, m_paddle) == true)
+           if(isInteracting(m_ball, m_paddle) == true)
             {
-                handleCollision(m_ball, m_paddle);
+                handleCollision(m_ball, m_paddle); 
             }
 
             isInteracting_handle(m_ball, m_brickGrid);
@@ -32,10 +36,14 @@ void game::run()
             m_brickGrid.update();
         }
     
-
-        if(m_brickGrid.isDistroedAll() == true)
+        auto isDistroedAllResult = async(launch::async, [this](){
+            return m_brickGrid.isDistroedAll();
+        });
+        //if(m_brickGrid.isDistroedAll() == true)
+        if(isDistroedAllResult.get() == true)
         {
             cout<<"You win"<<endl;
+            
             break;
         }
 
@@ -83,6 +91,8 @@ void game::run()
                 break;
             }
         }
+
+        drawResult.wait();
     }
 }
 
